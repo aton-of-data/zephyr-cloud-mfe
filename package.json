@@ -8,13 +8,14 @@
     "dev-host": "pnpm --filter './host' dev",
     "dev-remote": "pnpm --filter './remote' dev",
     "dev-shared-state": "pnpm --filter './shared-state' dev",
+    "clean": "rm -rf host/dist remote/dist shared-state/dist",
     "build": "pnpm build-shared-state && pnpm build-remote && pnpm build-host",
+    "build:clean": "pnpm clean && pnpm build",
     "build-host": "pnpm --filter './host' build",
     "build-remote": "pnpm --filter './remote' build",
     "build-shared-state": "pnpm --filter './shared-state' build",
     "preview": "pnpm --filter './host' preview",
-    "docs:serve": "serve docs",
-    "docs:watch": "typedoc --watch"
+    "docs:serve": "serve docs"
   },
   "keywords": [],
   "author": "",

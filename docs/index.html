@@ -1,0 +1,432 @@
+<!DOCTYPE html><html class="default" lang="en" data-base="./"><head><meta charset="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>Micro Frontend Architecture - v1.0.0</title><meta name="description" content="Documentation for Micro Frontend Architecture"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script defer src="assets/main.js"></script><script async src="assets/icons.js" id="tsd-icons-script"></script><script async src="assets/search.js" id="tsd-search-script"></script><script async src="assets/navigation.js" id="tsd-nav-script"></script>
+<style>
+:root.mermaid-enabled .mermaid-block > pre {
+  display: none;
+}
+:root:not(.mermaid-enabled) .mermaid-block > .mermaid {
+  display: none !important;
+}
+
+.mermaid-block > .mermaid[data-inserted].dark {
+  display: var(--mermaid-dark-display);
+}
+.mermaid-block > .mermaid[data-inserted].light {
+  display: var(--mermaid-light-display);
+}
+
+:root {
+  --mermaid-dark-display: none;
+  --mermaid-light-display: block;
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --mermaid-dark-display: none;
+    --mermaid-light-display: block;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --mermaid-dark-display: block;
+    --mermaid-light-display: none;
+  }
+}
+body.light, :root[data-theme="light"] {
+  --mermaid-dark-display: none;
+  --mermaid-light-display: block;
+}
+body.dark, :root[data-theme="dark"] {
+  --mermaid-dark-display: block;
+  --mermaid-light-display: none;
+}
+</style>
+</head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os";document.body.style.display="none";setTimeout(() => window.app?app.showPage():document.body.style.removeProperty("display"),500)</script><header class="tsd-page-toolbar"><div class="tsd-toolbar-contents container"><a href="index.html" class="title">Micro Frontend Architecture - v1.0.0</a><div id="tsd-toolbar-links"></div><button id="tsd-search-trigger" class="tsd-widget" aria-label="Search"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-search"></use></svg></button><dialog id="tsd-search" aria-label="Search"><input role="combobox" id="tsd-search-input" aria-controls="tsd-search-results" aria-autocomplete="list" aria-expanded="true" autocapitalize="off" autocomplete="off" placeholder="Search the docs" maxLength="100"/><ul role="listbox" id="tsd-search-results"></ul><div id="tsd-search-status" aria-live="polite" aria-atomic="true"><div>Preparing search index...</div></div></dialog><a href="#" class="tsd-widget menu" id="tsd-toolbar-menu-trigger" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-menu"></use></svg></a></div></header><div class="container container-main"><div class="col-content"><div class="tsd-page-title"><h1>Micro Frontend Architecture - v1.0.0</h1></div><div class="tsd-panel tsd-typography"><h1 id="🚀-module-federation-zephyr-cloud-demo" class="tsd-anchor-link">🚀 Module Federation + Zephyr Cloud Demo<a href="#🚀-module-federation-zephyr-cloud-demo" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h1><p>A complete example of a Micro-Frontends architecture using Module Federation with native Zephyr Cloud integration.</p>
+<p><img src="https://img.shields.io/badge/Module%20Federation-v0.11-blue" alt="Module Federation Architecture">
+<img src="https://img.shields.io/badge/Zephyr%20Cloud-Enabled-green" alt="Zephyr Cloud">
+<img src="https://img.shields.io/badge/React-18.3-blue" alt="React">
+<img src="https://img.shields.io/badge/Vite-5.4-purple" alt="Vite"></p>
+<h2 id="📋-overview" class="tsd-anchor-link">📋 Overview<a href="#📋-overview" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>This project demonstrates a modern Micro-Frontends architecture where:</p>
+<ul>
+<li><strong>Host Application</strong>: Main application that consumes remote components</li>
+<li><strong>Remote Application</strong>: Library of reusable components exposed via Module Federation</li>
+<li><strong>Shared State</strong>: Global state management shared across all applications</li>
+<li><strong>Zephyr Cloud</strong>: Automatic orchestration and deployment of federated modules</li>
+</ul>
+<h2 id="🏗️-architecture-overview" class="tsd-anchor-link">🏗️ Architecture Overview<a href="#🏗️-architecture-overview" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><div class="mermaid-block"><div class="mermaid dark">%%{init:{"theme":"dark"}}%%
+graph TB
+    A[User Browser] --&gt; B[Host App]
+    B --&gt; C[Module Federation]
+    C --&gt; D[Remote App]
+    C --&gt; E[Shared State]
+    D --&gt; E
+    F[Host Build] --&gt; G[remoteEntry.js]
+    H[Remote Build] --&gt; I[remoteEntry.js]
+    J[Shared State Build] --&gt; K[remoteEntry.js]
+    G --&gt; L[Zephyr Cloud]
+    I --&gt; L
+    K --&gt; L
+    L --&gt; A</div><div class="mermaid light">%%{init:{"theme":"default"}}%%
+graph TB
+    A[User Browser] --&gt; B[Host App]
+    B --&gt; C[Module Federation]
+    C --&gt; D[Remote App]
+    C --&gt; E[Shared State]
+    D --&gt; E
+    F[Host Build] --&gt; G[remoteEntry.js]
+    H[Remote Build] --&gt; I[remoteEntry.js]
+    J[Shared State Build] --&gt; K[remoteEntry.js]
+    G --&gt; L[Zephyr Cloud]
+    I --&gt; L
+    K --&gt; L
+    L --&gt; A</div><pre><code class="language-mermaid">graph TB
+    A[User Browser] --&gt; B[Host App]
+    B --&gt; C[Module Federation]
+    C --&gt; D[Remote App]
+    C --&gt; E[Shared State]
+    D --&gt; E
+    F[Host Build] --&gt; G[remoteEntry.js]
+    H[Remote Build] --&gt; I[remoteEntry.js]
+    J[Shared State Build] --&gt; K[remoteEntry.js]
+    G --&gt; L[Zephyr Cloud]
+    I --&gt; L
+    K --&gt; L
+    L --&gt; A</code></pre></div>
+<h2 id="🎯-project-structure" class="tsd-anchor-link">🎯 Project Structure<a href="#🎯-project-structure" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><div class="mermaid-block"><div class="mermaid dark">%%{init:{"theme":"dark"}}%%
+graph LR
+    A[Host App] --&gt; B[DashboardLayout]
+    B --&gt; C[Header]
+    B --&gt; D[Sidebar]
+    B --&gt; E[Remote Content]
+    F[Remote Components] --&gt; G[ThemeButton]
+    F --&gt; H[LanguageButton]
+    F --&gt; I[App Content]
+    J[Shared State] --&gt; K[Theme Store]
+    J --&gt; L[Language Store]
+    K --&gt; M[LocalStorage]
+    L --&gt; M
+    E --&gt; F
+    E --&gt; J
+    G --&gt; J
+    H --&gt; J</div><div class="mermaid light">%%{init:{"theme":"default"}}%%
+graph LR
+    A[Host App] --&gt; B[DashboardLayout]
+    B --&gt; C[Header]
+    B --&gt; D[Sidebar]
+    B --&gt; E[Remote Content]
+    F[Remote Components] --&gt; G[ThemeButton]
+    F --&gt; H[LanguageButton]
+    F --&gt; I[App Content]
+    J[Shared State] --&gt; K[Theme Store]
+    J --&gt; L[Language Store]
+    K --&gt; M[LocalStorage]
+    L --&gt; M
+    E --&gt; F
+    E --&gt; J
+    G --&gt; J
+    H --&gt; J</div><pre><code class="language-mermaid">graph LR
+    A[Host App] --&gt; B[DashboardLayout]
+    B --&gt; C[Header]
+    B --&gt; D[Sidebar]
+    B --&gt; E[Remote Content]
+    F[Remote Components] --&gt; G[ThemeButton]
+    F --&gt; H[LanguageButton]
+    F --&gt; I[App Content]
+    J[Shared State] --&gt; K[Theme Store]
+    J --&gt; L[Language Store]
+    K --&gt; M[LocalStorage]
+    L --&gt; M
+    E --&gt; F
+    E --&gt; J
+    G --&gt; J
+    H --&gt; J</code></pre></div>
+<h2 id="📦-modules" class="tsd-anchor-link">📦 Modules<a href="#📦-modules" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><h3 id="host-application" class="tsd-anchor-link">Host Application<a href="#host-application" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><p><strong>Port:</strong> 5173</p>
+<p>Main shell application that orchestrates the entire system.</p>
+<div class="mermaid-block"><div class="mermaid dark">%%{init:{"theme":"dark"}}%%
+flowchart TD
+    A[Host Bootstrap] --&gt; B[Load Layout]
+    B --&gt; C[Lazy Load Remote]
+    B --&gt; D[Load Shared State]
+    C --&gt; E[Suspense Boundary]
+    D --&gt; E
+    E --&gt; F[Render UI]</div><div class="mermaid light">%%{init:{"theme":"default"}}%%
+flowchart TD
+    A[Host Bootstrap] --&gt; B[Load Layout]
+    B --&gt; C[Lazy Load Remote]
+    B --&gt; D[Load Shared State]
+    C --&gt; E[Suspense Boundary]
+    D --&gt; E
+    E --&gt; F[Render UI]</div><pre><code class="language-mermaid">flowchart TD
+    A[Host Bootstrap] --&gt; B[Load Layout]
+    B --&gt; C[Lazy Load Remote]
+    B --&gt; D[Load Shared State]
+    C --&gt; E[Suspense Boundary]
+    D --&gt; E
+    E --&gt; F[Render UI]</code></pre></div>
+<h3 id="remote-application" class="tsd-anchor-link">Remote Application<a href="#remote-application" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><p><strong>Port:</strong> 5174</p>
+<p>Library of globally shared components.</p>
+<div class="mermaid-block"><div class="mermaid dark">%%{init:{"theme":"dark"}}%%
+flowchart LR
+    A[Remote] --&gt; B[ThemeButton]
+    A --&gt; C[LanguageButton]
+    A --&gt; D[App Content]
+    B --&gt; E[Shared State]
+    C --&gt; E
+    D --&gt; E</div><div class="mermaid light">%%{init:{"theme":"default"}}%%
+flowchart LR
+    A[Remote] --&gt; B[ThemeButton]
+    A --&gt; C[LanguageButton]
+    A --&gt; D[App Content]
+    B --&gt; E[Shared State]
+    C --&gt; E
+    D --&gt; E</div><pre><code class="language-mermaid">flowchart LR
+    A[Remote] --&gt; B[ThemeButton]
+    A --&gt; C[LanguageButton]
+    A --&gt; D[App Content]
+    B --&gt; E[Shared State]
+    C --&gt; E
+    D --&gt; E</code></pre></div>
+<h3 id="shared-state" class="tsd-anchor-link">Shared State<a href="#shared-state" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><p><strong>Port:</strong> 5175</p>
+<p>Global state management using Zustand with Module Federation.</p>
+<div class="mermaid-block"><div class="mermaid dark">%%{init:{"theme":"dark"}}%%
+flowchart LR
+    A[User Action] --&gt; B[Store]
+    B --&gt; C[State Update]
+    C --&gt; D[LocalStorage]
+    C --&gt; E[UI Update]</div><div class="mermaid light">%%{init:{"theme":"default"}}%%
+flowchart LR
+    A[User Action] --&gt; B[Store]
+    B --&gt; C[State Update]
+    C --&gt; D[LocalStorage]
+    C --&gt; E[UI Update]</div><pre><code class="language-mermaid">flowchart LR
+    A[User Action] --&gt; B[Store]
+    B --&gt; C[State Update]
+    C --&gt; D[LocalStorage]
+    C --&gt; E[UI Update]</code></pre></div>
+<h2 id="🔄-data-flow" class="tsd-anchor-link">🔄 Data Flow<a href="#🔄-data-flow" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><div class="mermaid-block"><div class="mermaid dark">%%{init:{"theme":"dark"}}%%
+flowchart TD
+    A[User] --&gt; B[Host]
+    B --&gt; C[Remote]
+    C --&gt; D[Shared State]
+    D --&gt; C
+    C --&gt; B
+    B --&gt; A
+    A --&gt; C
+    C --&gt; E[Update State]
+    E --&gt; F[Notify All]
+    F --&gt; B</div><div class="mermaid light">%%{init:{"theme":"default"}}%%
+flowchart TD
+    A[User] --&gt; B[Host]
+    B --&gt; C[Remote]
+    C --&gt; D[Shared State]
+    D --&gt; C
+    C --&gt; B
+    B --&gt; A
+    A --&gt; C
+    C --&gt; E[Update State]
+    E --&gt; F[Notify All]
+    F --&gt; B</div><pre><code class="language-mermaid">flowchart TD
+    A[User] --&gt; B[Host]
+    B --&gt; C[Remote]
+    C --&gt; D[Shared State]
+    D --&gt; C
+    C --&gt; B
+    B --&gt; A
+    A --&gt; C
+    C --&gt; E[Update State]
+    E --&gt; F[Notify All]
+    F --&gt; B</code></pre></div>
+<h2 id="🏗️-project-structure" class="tsd-anchor-link">🏗️ Project Structure<a href="#🏗️-project-structure" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><pre><code><span class="hl-0">mfe</span><span class="hl-1">/</span><br/><span class="hl-1">├── </span><span class="hl-0">host</span><span class="hl-1">/              # </span><span class="hl-0">Host</span><span class="hl-1"> </span><span class="hl-2">Application</span><span class="hl-1"> (</span><span class="hl-0">shell</span><span class="hl-1">)</span><br/><span class="hl-1">│   ├── </span><span class="hl-0">src</span><span class="hl-1">/</span><br/><span class="hl-1">│   │   ├── </span><span class="hl-0">App</span><span class="hl-1">.</span><span class="hl-0">tsx</span><span class="hl-1">    # </span><span class="hl-0">Main</span><span class="hl-1"> </span><span class="hl-0">shell</span><span class="hl-1"> </span><span class="hl-0">app</span><br/><span class="hl-1">│   │   ├── </span><span class="hl-0">components</span><span class="hl-1">/</span><br/><span class="hl-1">│   │   │   ├── </span><span class="hl-0">organisms</span><span class="hl-1">/  # </span><span class="hl-0">Header</span><span class="hl-1">, </span><span class="hl-0">Sidebar</span><br/><span class="hl-1">│   │   │   └── </span><span class="hl-0">templates</span><span class="hl-1">/  # </span><span class="hl-0">DashboardLayout</span><br/><span class="hl-1">│   └── </span><span class="hl-0">vite</span><span class="hl-1">.</span><span class="hl-0">config</span><span class="hl-1">.</span><span class="hl-0">ts</span><span class="hl-1"> # </span><span class="hl-0">Module</span><span class="hl-1"> </span><span class="hl-0">Federation</span><span class="hl-1"> </span><span class="hl-0">config</span><br/><span class="hl-1">│</span><br/><span class="hl-1">├── </span><span class="hl-0">remote</span><span class="hl-1">/            # </span><span class="hl-0">Remote</span><span class="hl-1"> </span><span class="hl-2">Application</span><span class="hl-1"> (</span><span class="hl-0">library</span><span class="hl-1">)</span><br/><span class="hl-1">│   ├── </span><span class="hl-0">src</span><span class="hl-1">/</span><br/><span class="hl-1">│   │   ├── </span><span class="hl-0">App</span><span class="hl-1">.</span><span class="hl-0">tsx</span><span class="hl-1">    # </span><span class="hl-0">Main</span><span class="hl-1"> </span><span class="hl-0">content</span><br/><span class="hl-1">│   │   └── </span><span class="hl-0">components</span><span class="hl-1">/</span><br/><span class="hl-1">│   │       ├── </span><span class="hl-0">ThemeButton</span><br/><span class="hl-1">│   │       └── </span><span class="hl-0">LanguageButton</span><br/><span class="hl-1">│   └── </span><span class="hl-0">vite</span><span class="hl-1">.</span><span class="hl-0">config</span><span class="hl-1">.</span><span class="hl-0">ts</span><span class="hl-1"> # </span><span class="hl-0">Module</span><span class="hl-1"> </span><span class="hl-0">Federation</span><span class="hl-1"> </span><span class="hl-0">exposes</span><br/><span class="hl-1">│</span><br/><span class="hl-1">├── </span><span class="hl-0">shared</span><span class="hl-1">-</span><span class="hl-0">state</span><span class="hl-1">/      # </span><span class="hl-0">Shared</span><span class="hl-1"> </span><span class="hl-2">State</span><span class="hl-1"> (</span><span class="hl-0">global</span><span class="hl-1">)</span><br/><span class="hl-1">│   ├── </span><span class="hl-0">src</span><span class="hl-1">/</span><br/><span class="hl-1">│   │   ├── </span><span class="hl-0">stores</span><span class="hl-1">/    # </span><span class="hl-0">Zustand</span><span class="hl-1"> </span><span class="hl-0">stores</span><br/><span class="hl-1">│   │   ├── </span><span class="hl-0">i18n</span><span class="hl-1">/      # </span><span class="hl-0">Translations</span><br/><span class="hl-1">│   │   └── </span><span class="hl-0">styles</span><span class="hl-1">/    # </span><span class="hl-0">Global</span><span class="hl-1"> </span><span class="hl-0">styles</span><br/><span class="hl-1">│   └── </span><span class="hl-0">vite</span><span class="hl-1">.</span><span class="hl-0">config</span><span class="hl-1">.</span><span class="hl-0">ts</span><span class="hl-1"> # </span><span class="hl-0">Module</span><span class="hl-1"> </span><span class="hl-0">Federation</span><span class="hl-1"> </span><span class="hl-0">config</span><br/><span class="hl-1">│</span><br/><span class="hl-1">├── </span><span class="hl-0">docs</span><span class="hl-1">/              # </span><span class="hl-0">Generated</span><span class="hl-1"> </span><span class="hl-0">documentation</span><br/><span class="hl-1">├── </span><span class="hl-0">typedoc</span><span class="hl-1">.</span><span class="hl-0">json</span><span class="hl-1">       # </span><span class="hl-0">TypeDoc</span><span class="hl-1"> </span><span class="hl-0">configuration</span><br/><span class="hl-1">└── </span><span class="hl-0">package</span><span class="hl-1">.</span><span class="hl-0">json</span><span class="hl-1">       # </span><span class="hl-0">Root</span><span class="hl-1"> </span><span class="hl-0">workspace</span><span class="hl-1"> </span><span class="hl-0">config</span>
+</code><button>Copy</button></pre>
+
+<h2 id="🚀-getting-started" class="tsd-anchor-link">🚀 Getting Started<a href="#🚀-getting-started" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><h3 id="prerequisites" class="tsd-anchor-link">Prerequisites<a href="#prerequisites" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><ul>
+<li><strong>Node.js</strong> &gt;= 16</li>
+<li><strong>pnpm</strong> (package manager)</li>
+<li>Account on <a href="https://app.zephyr-cloud.io/">Zephyr Cloud</a></li>
+</ul>
+<h3 id="installation" class="tsd-anchor-link">Installation<a href="#installation" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><pre><code class="bash"><span class="hl-3"># Install dependencies</span><br/><span class="hl-2">pnpm</span><span class="hl-1"> </span><span class="hl-4">install</span>
+</code><button type="button">Copy</button></pre>
+
+<h3 id="local-development" class="tsd-anchor-link">Local Development<a href="#local-development" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><pre><code class="bash"><span class="hl-3"># Start all apps in parallel</span><br/><span class="hl-2">pnpm</span><span class="hl-1"> </span><span class="hl-4">dev</span><br/><br/><span class="hl-3"># Or start individually:</span><br/><span class="hl-2">pnpm</span><span class="hl-1"> </span><span class="hl-4">dev-host</span><span class="hl-1">         </span><span class="hl-3"># Host on port 5173</span><br/><span class="hl-2">pnpm</span><span class="hl-1"> </span><span class="hl-4">dev-remote</span><span class="hl-1">       </span><span class="hl-3"># Remote on port 5174</span><br/><span class="hl-2">pnpm</span><span class="hl-1"> </span><span class="hl-4">dev-shared-state</span><span class="hl-1"> </span><span class="hl-3"># Shared State on port 5175</span>
+</code><button type="button">Copy</button></pre>
+
+<p><strong>Development URLs:</strong></p>
+<ul>
+<li><strong>Host</strong>: <a href="http://localhost:5173">http://localhost:5173</a></li>
+<li><strong>Remote</strong>: <a href="http://localhost:5174">http://localhost:5174</a></li>
+<li><strong>Shared State</strong>: <a href="http://localhost:5175">http://localhost:5175</a></li>
+</ul>
+<h3 id="production-build" class="tsd-anchor-link">Production Build<a href="#production-build" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><pre><code class="bash"><span class="hl-3"># Build all applications in order</span><br/><span class="hl-2">pnpm</span><span class="hl-1"> </span><span class="hl-4">build</span><br/><br/><span class="hl-3"># Or individually:</span><br/><span class="hl-2">pnpm</span><span class="hl-1"> </span><span class="hl-4">build-shared-state</span><span class="hl-1">  </span><span class="hl-3"># Shared State first</span><br/><span class="hl-2">pnpm</span><span class="hl-1"> </span><span class="hl-4">build-remote</span><span class="hl-1">        </span><span class="hl-3"># Remote second</span><br/><span class="hl-2">pnpm</span><span class="hl-1"> </span><span class="hl-4">build-host</span><span class="hl-1">          </span><span class="hl-3"># Host last</span>
+</code><button type="button">Copy</button></pre>
+
+<h2 id="📚-documentation" class="tsd-anchor-link">📚 Documentation<a href="#📚-documentation" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>Generate interactive documentation with TypeDoc:</p>
+<pre><code class="bash"><span class="hl-2">pnpm</span><span class="hl-1"> </span><span class="hl-4">docs:serve</span><br/><span class="hl-3"># http://localhost:3000</span>
+</code><button type="button">Copy</button></pre>
+
+<p>Access documentation at: <strong><a href="http://localhost:3000">http://localhost:3000</a></strong></p>
+<h2 id="☁️-deploy-with-zephyr-cloud" class="tsd-anchor-link">☁️ Deploy with Zephyr Cloud<a href="#☁️-deploy-with-zephyr-cloud" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><h3 id="initial-setup" class="tsd-anchor-link">Initial Setup<a href="#initial-setup" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><ol>
+<li>
+<p><strong>Login to Zephyr Cloud</strong></p>
+<ul>
+<li>Visit <a href="https://app.zephyr-cloud.io/">https://app.zephyr-cloud.io/</a></li>
+<li>Sign in to the platform</li>
+</ul>
+</li>
+<li>
+<p><strong>Configure Authentication</strong></p>
+<ul>
+<li>The <code>vite-plugin-zephyr</code> plugin automatically detects credentials</li>
+<li>Configure environment variables or tokens as needed</li>
+</ul>
+</li>
+</ol>
+<h3 id="deployment-process" class="tsd-anchor-link">Deployment Process<a href="#deployment-process" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><p>Deployment happens automatically during build:</p>
+<pre><code class="bash"><span class="hl-3"># Build and deploy Shared State</span><br/><span class="hl-2">pnpm</span><span class="hl-1"> </span><span class="hl-4">build-shared-state</span><br/><br/><span class="hl-3"># Build and deploy Remote</span><br/><span class="hl-2">pnpm</span><span class="hl-1"> </span><span class="hl-4">build-remote</span><br/><br/><span class="hl-3"># Build and deploy Host</span><br/><span class="hl-2">pnpm</span><span class="hl-1"> </span><span class="hl-4">build-host</span>
+</code><button type="button">Copy</button></pre>
+
+<p><strong>What happens during build:</strong></p>
+<ol>
+<li>Application compilation</li>
+<li>Automatic asset upload to Zephyr Cloud</li>
+<li>Version registration (SemVer)</li>
+<li>Production URL generation</li>
+<li>Automatic dependency resolution between modules</li>
+</ol>
+<h2 id="🎯-how-it-works" class="tsd-anchor-link">🎯 How It Works<a href="#🎯-how-it-works" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><h3 id="module-federation" class="tsd-anchor-link">Module Federation<a href="#module-federation" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><p>Module Federation allows JavaScript applications to share modules at <strong>runtime</strong>, not at compile time:</p>
+<pre><code class="typescript"><span class="hl-3">// host/src/components/DashboardLayout.tsx</span><br/><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-6">RemoteApp</span><span class="hl-1"> = </span><span class="hl-2">lazy</span><span class="hl-1">(() </span><span class="hl-5">=&gt;</span><span class="hl-1"> </span><span class="hl-5">import</span><span class="hl-1">(</span><span class="hl-4">&quot;vite_remote/App&quot;</span><span class="hl-1">));</span><br/><br/><span class="hl-3">// Component loaded dynamically when needed</span><br/><span class="hl-1">&lt;</span><span class="hl-0">RemoteApp</span><span class="hl-1"> /&gt;;</span>
+</code><button type="button">Copy</button></pre>
+
+<h3 id="remote-configuration" class="tsd-anchor-link">Remote Configuration<a href="#remote-configuration" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><pre><code class="typescript"><span class="hl-3">// remote/vite.config.ts</span><br/><span class="hl-7">exposes</span><span class="hl-1">: {</span><br/><span class="hl-1">  </span><span class="hl-4">&#39;./ThemeButton&#39;</span><span class="hl-1">: </span><span class="hl-4">&#39;./src/components/ThemeButton&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-4">&#39;./LanguageButton&#39;</span><span class="hl-1">: </span><span class="hl-4">&#39;./src/components/LanguageButton&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">  </span><span class="hl-4">&#39;./App&#39;</span><span class="hl-1">: </span><span class="hl-4">&#39;./src/App&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">}</span>
+</code><button type="button">Copy</button></pre>
+
+<h3 id="host-configuration" class="tsd-anchor-link">Host Configuration<a href="#host-configuration" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><pre><code class="typescript"><span class="hl-3">// host/vite.config.ts</span><br/><span class="hl-7">remotes</span><span class="hl-1">: {</span><br/><span class="hl-1">  </span><span class="hl-4">&#39;vite_remote&#39;</span><span class="hl-1">: {</span><br/><span class="hl-1">    </span><span class="hl-0">entry:</span><span class="hl-1"> </span><span class="hl-4">&#39;http://localhost:5174/remoteEntry.js&#39;</span><span class="hl-1">, </span><span class="hl-3">// Dev</span><br/><span class="hl-1">    </span><span class="hl-3">// In production, Zephyr resolves automatically</span><br/><span class="hl-1">    </span><span class="hl-0">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;module&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">  },</span><br/><span class="hl-1">  </span><span class="hl-4">&#39;shared-state&#39;</span><span class="hl-1">: {</span><br/><span class="hl-1">    </span><span class="hl-0">entry:</span><span class="hl-1"> </span><span class="hl-4">&#39;http://localhost:5175/remoteEntry.js&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-0">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;module&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">  },</span><br/><span class="hl-1">}</span>
+</code><button type="button">Copy</button></pre>
+
+<h3 id="shared-dependencies" class="tsd-anchor-link">Shared Dependencies<a href="#shared-dependencies" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><p>React, ReactDOM, and Zustand are shared between Host and Remote to avoid duplication:</p>
+<pre><code class="typescript"><span class="hl-7">shared</span><span class="hl-1">: {</span><br/><span class="hl-1">  </span><span class="hl-7">react</span><span class="hl-1">: { </span><span class="hl-7">singleton</span><span class="hl-1">: </span><span class="hl-5">true</span><span class="hl-1"> },</span><br/><span class="hl-1">  </span><span class="hl-4">&#39;react-dom&#39;</span><span class="hl-1">: { </span><span class="hl-0">singleton:</span><span class="hl-1"> </span><span class="hl-5">true</span><span class="hl-1"> },</span><br/><span class="hl-1">  </span><span class="hl-7">zustand</span><span class="hl-1">: { </span><span class="hl-7">singleton</span><span class="hl-1">: </span><span class="hl-5">true</span><span class="hl-1"> },</span><br/><span class="hl-1">}</span>
+</code><button type="button">Copy</button></pre>
+
+<h2 id="📦-available-scripts" class="tsd-anchor-link">📦 Available Scripts<a href="#📦-available-scripts" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pnpm dev</code></td>
+<td>Start all apps in parallel</td>
+</tr>
+<tr>
+<td><code>pnpm dev-host</code></td>
+<td>Start only the host</td>
+</tr>
+<tr>
+<td><code>pnpm dev-remote</code></td>
+<td>Start only the remote</td>
+</tr>
+<tr>
+<td><code>pnpm dev-shared-state</code></td>
+<td>Start only shared-state</td>
+</tr>
+<tr>
+<td><code>pnpm build</code></td>
+<td>Build all apps (in order)</td>
+</tr>
+<tr>
+<td><code>pnpm build-host</code></td>
+<td>Build only host</td>
+</tr>
+<tr>
+<td><code>pnpm build-remote</code></td>
+<td>Build only remote</td>
+</tr>
+<tr>
+<td><code>pnpm build-shared-state</code></td>
+<td>Build only shared-state</td>
+</tr>
+<tr>
+<td><code>pnpm preview</code></td>
+<td>Preview host build</td>
+</tr>
+<tr>
+<td><code>pnpm docs</code></td>
+<td>Generate documentation</td>
+</tr>
+<tr>
+<td><code>pnpm docs:serve</code></td>
+<td>Generate and serve docs</td>
+</tr>
+<tr>
+<td><code>pnpm docs:watch</code></td>
+<td>Watch mode for docs</td>
+</tr>
+</tbody>
+</table>
+<h2 id="🔧-technologies" class="tsd-anchor-link">🔧 Technologies<a href="#🔧-technologies" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><ul>
+<li><strong>React 18</strong> - UI library</li>
+<li><strong>TypeScript</strong> - Type safety</li>
+<li><strong>Vite</strong> - Build tool and dev server</li>
+<li><strong>Module Federation</strong> - Micro frontends architecture</li>
+<li><strong>Zustand</strong> - State management</li>
+<li><strong>Zephyr Cloud</strong> - Deployment and orchestration platform</li>
+<li><strong>pnpm</strong> - Package manager with workspace support</li>
+<li><strong>TypeDoc</strong> - Documentation generator</li>
+</ul>
+<h2 id="📖-additional-documentation" class="tsd-anchor-link">📖 Additional Documentation<a href="#📖-additional-documentation" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><ul>
+<li><a href="media/README.md">Host App Details</a> - Host application architecture</li>
+<li><a href="media/README-1.md">Remote App Details</a> - Remote components library</li>
+<li><a href="media/README-2.md">Shared State Details</a> - Global state management</li>
+<li><a href="./EXPLICACAO.md">Detailed Explanation</a> - Complete guide on how everything works</li>
+<li><a href="https://module-federation.io/">Module Federation Docs</a></li>
+<li><a href="https://docs.zephyr-cloud.io/">Zephyr Cloud Docs</a></li>
+<li><a href="https://vitejs.dev/">Vite Documentation</a></li>
+</ul>
+<h2 id="🎓-key-concepts" class="tsd-anchor-link">🎓 Key Concepts<a href="#🎓-key-concepts" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><h3 id="runtime-vs-build-time" class="tsd-anchor-link">Runtime vs Build-time<a href="#runtime-vs-build-time" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><ul>
+<li><strong>Runtime</strong>: Components loaded when needed, at runtime</li>
+<li><strong>Build-time</strong>: Host and Remote built independently</li>
+</ul>
+<h3 id="independent-deployment" class="tsd-anchor-link">Independent Deployment<a href="#independent-deployment" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><ul>
+<li>Remote can be updated without redeploying Host</li>
+<li>Host automatically loads latest version (per versioning policy)</li>
+<li>Granular rollback possible</li>
+</ul>
+<h3 id="shared-dependencies-1" class="tsd-anchor-link">Shared Dependencies<a href="#shared-dependencies-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h3><ul>
+<li>React and ReactDOM are singleton shared</li>
+<li>Avoids code duplication</li>
+<li>Ensures compatibility between components</li>
+</ul>
+<h2 id="💡-what-this-project-demonstrates" class="tsd-anchor-link">💡 What This Project Demonstrates<a href="#💡-what-this-project-demonstrates" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><ol>
+<li><strong>Micro-Frontends Architecture</strong>: How to split an application into independent modules</li>
+<li><strong>Module Federation</strong>: Dynamic component loading at runtime</li>
+<li><strong>Zephyr Cloud Integration</strong>: Automatic deployment and module orchestration</li>
+<li><strong>Independent Development</strong>: Teams can work separately</li>
+<li><strong>Independent Deployment</strong>: Updates without full application redeploy</li>
+<li><strong>Global State Management</strong>: Shared state across multiple applications</li>
+<li><strong>Atomic Design</strong>: Component organization patterns</li>
+</ol>
+<h2 id="📝-license" class="tsd-anchor-link">📝 License<a href="#📝-license" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2><p>This project was created as part of a technical assessment.</p>
+<hr>
+<p><strong>Developed with ❤️ using Module Federation and Zephyr Cloud</strong></p>
+</div></div><div class="col-sidebar"><div class="page-menu"><div class="tsd-navigation settings"><details class="tsd-accordion"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-chevronDown"></use></svg><h3>Settings</h3></summary><div class="tsd-accordion-details"><div class="tsd-filter-visibility"><span class="settings-label">Member Visibility</span><ul id="tsd-filter-options"><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-protected" name="protected"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Protected</span></label></li><li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li></ul></div><div class="tsd-theme-toggle"><label class="settings-label" for="tsd-theme">Theme</label><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div><details open class="tsd-accordion tsd-page-navigation"><summary class="tsd-accordion-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="assets/icons.svg#icon-chevronDown"></use></svg><h3>On This Page</h3></summary><div class="tsd-accordion-details"><a href="#🚀-module-federation-zephyr-cloud-demo"><span>🚀 <wbr/>Module <wbr/>Federation + <wbr/>Zephyr <wbr/>Cloud <wbr/>Demo</span></a><ul><li><a href="#📋-overview"><span>📋 <wbr/>Overview</span></a></li><li><a href="#🏗️-architecture-overview"><span>🏗️ <wbr/>Architecture <wbr/>Overview</span></a></li><li><a href="#🎯-project-structure"><span>🎯 <wbr/>Project <wbr/>Structure</span></a></li><li><a href="#📦-modules"><span>📦 <wbr/>Modules</span></a></li><li><ul><li><a href="#host-application"><span>Host <wbr/>Application</span></a></li><li><a href="#remote-application"><span>Remote <wbr/>Application</span></a></li><li><a href="#shared-state"><span>Shared <wbr/>State</span></a></li></ul></li><li><a href="#🔄-data-flow"><span>🔄 <wbr/>Data <wbr/>Flow</span></a></li><li><a href="#🏗️-project-structure"><span>🏗️ <wbr/>Project <wbr/>Structure</span></a></li><li><a href="#🚀-getting-started"><span>🚀 <wbr/>Getting <wbr/>Started</span></a></li><li><ul><li><a href="#prerequisites"><span>Prerequisites</span></a></li><li><a href="#installation"><span>Installation</span></a></li><li><a href="#local-development"><span>Local <wbr/>Development</span></a></li><li><a href="#production-build"><span>Production <wbr/>Build</span></a></li></ul></li><li><a href="#📚-documentation"><span>📚 <wbr/>Documentation</span></a></li><li><a href="#☁️-deploy-with-zephyr-cloud"><span>☁️ <wbr/>Deploy with <wbr/>Zephyr <wbr/>Cloud</span></a></li><li><ul><li><a href="#initial-setup"><span>Initial <wbr/>Setup</span></a></li><li><a href="#deployment-process"><span>Deployment <wbr/>Process</span></a></li></ul></li><li><a href="#🎯-how-it-works"><span>🎯 <wbr/>How <wbr/>It <wbr/>Works</span></a></li><li><ul><li><a href="#module-federation"><span>Module <wbr/>Federation</span></a></li><li><a href="#remote-configuration"><span>Remote <wbr/>Configuration</span></a></li><li><a href="#host-configuration"><span>Host <wbr/>Configuration</span></a></li><li><a href="#shared-dependencies"><span>Shared <wbr/>Dependencies</span></a></li></ul></li><li><a href="#📦-available-scripts"><span>📦 <wbr/>Available <wbr/>Scripts</span></a></li><li><a href="#🔧-technologies"><span>🔧 <wbr/>Technologies</span></a></li><li><a href="#📖-additional-documentation"><span>📖 <wbr/>Additional <wbr/>Documentation</span></a></li><li><a href="#🎓-key-concepts"><span>🎓 <wbr/>Key <wbr/>Concepts</span></a></li><li><ul><li><a href="#runtime-vs-build-time"><span>Runtime vs <wbr/>Build-<wbr/>time</span></a></li><li><a href="#independent-deployment"><span>Independent <wbr/>Deployment</span></a></li><li><a href="#shared-dependencies-1"><span>Shared <wbr/>Dependencies</span></a></li></ul></li><li><a href="#💡-what-this-project-demonstrates"><span>💡 <wbr/>What <wbr/>This <wbr/>Project <wbr/>Demonstrates</span></a></li><li><a href="#📝-license"><span>📝 <wbr/>License</span></a></li></ul></div></details></div><div class="site-menu"><nav class="tsd-navigation"><a href="modules.html">Micro Frontend Architecture - v1.0.0</a><ul class="tsd-small-nested-navigation" id="tsd-nav-container"><li>Loading...</li></ul></nav></div></div></div><footer><p class="tsd-generator">Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></footer><div class="overlay"></div>
+<script type="module">
+import mermaid from "https://unpkg.com/mermaid@latest/dist/mermaid.esm.min.mjs";
+
+document.documentElement.classList.add("mermaid-enabled");
+
+mermaid.initialize({startOnLoad:true});
+
+requestAnimationFrame(function check() {
+  let some = false;
+  document.querySelectorAll("div.mermaid:not([data-inserted])").forEach(div => {
+    some = true;
+    if (div.querySelector("svg")) {
+      div.dataset.inserted = true;
+    }
+  });
+
+  if (some) {
+    requestAnimationFrame(check);
+  }
+});
+</script>
+</body></html>
