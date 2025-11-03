@@ -49,7 +49,6 @@ Layouts que combinam organisms para formar páginas completas.
 O `ThemeButton` está sendo importado do remote MFE:
 
 ```tsx
-// @ts-expect-error - Remote module
 import ThemeButton from 'vite_remote/ThemeButton';
 ```
 
