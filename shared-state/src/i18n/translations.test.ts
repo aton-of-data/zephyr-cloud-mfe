@@ -16,7 +16,7 @@ describe('translations', () => {
   });
 
   it('should have all keys as non-empty strings', () => {
-    const keys = Object.keys(translations.pt);
+    const keys = Object.keys(translations.pt) as Array<keyof typeof translations.pt>;
     keys.forEach((key) => {
       expect(typeof translations.pt[key]).toBe('string');
       expect(translations.pt[key].length).toBeGreaterThan(0);
