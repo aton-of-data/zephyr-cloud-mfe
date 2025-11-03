@@ -1,0 +1,56 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": [
+    "./shared-state/src",
+    "./remote/src",
+    "./host/src"
+  ],
+  "entryPointStrategy": "expand",
+  "out": "./docs",
+  "plugin": [
+    "typedoc-plugin-mermaid"
+  ],
+  "excludePrivate": true,
+  "excludeProtected": false,
+  "excludeExternals": true,
+  "exclude": [
+    "**/node_modules/**",
+    "**/*.d.ts",
+    "**/tsconfig*.json",
+    "**/vite.config.ts",
+    "**/*.config.ts",
+    "**/main.tsx",
+    "**/bootstrap.tsx",
+    "**/App.tsx"
+  ],
+  "readme": "readme.md",
+  "name": "Micro Frontend Architecture",
+  "includeVersion": true,
+  "categorizeByGroup": true,
+  "categoryOrder": [
+    "Host",
+    "Remote",
+    "Shared State"
+  ],
+  "groupOrder": [
+    "atoms",
+    "molecules",
+    "organisms",
+    "templates"
+  ],
+  "searchInComments": true,
+  "searchCategoryBoosts": {
+    "Host": 2,
+    "Remote": 2,
+    "Shared State": 2
+  },
+  "tsconfig": "./tsconfig.docs.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@shared-state/*": ["./shared-state/src/*"],
+      "@host/*": ["./host/src/*"],
+      "@remote/*": ["./remote/src/*"]
+    }
+  }
+}

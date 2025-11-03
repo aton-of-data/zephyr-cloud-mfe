@@ -1,93 +1,71 @@
-# React + Vite Host Application
+# Host App
 
-The host application for the React + Vite Module Federation example, demonstrating how to consume multiple remote micro-frontends built with different bundlers.
+Main application that orchestrates the Micro Frontends system.
 
-## Technology Stack
+## 📦 Architecture
 
-- **Framework**: React 18 with TypeScript
-- **Architecture**: Module Federation (Host)
-- **Bundler**: Vite
-- **Language**: TypeScript  
-- **Deployment**: Zephyr Cloud
-- **Development**: Vite Dev Server
+```mermaid
+graph TB
+    A[Host App] --> B[DashboardLayout]
+    B --> C[Header]
+    B --> D[Sidebar]
+    B --> E[Remote App Content]
+    E -->|consumes| F[Remote Module]
+    E -->|consumes| G[Shared State]
+    F --> G
+```
 
-## Prerequisites
+## 🎯 Responsibility
 
-- Node.js (version 16 or higher)
-- pnpm (recommended)
+**Shell** application that:
+- 🏗️ **Layout**: Base structure (Header, Sidebar, Content)
+- 🔗 **Orchestration**: Consumes remote modules via Module Federation
+- 🎨 **UI**: Responsible for user experience
 
-## Getting Started
+## 🔄 Application Flow
 
-1. **Install dependencies**
-   ```bash
-   pnpm install
-   ```
+```mermaid
+flowchart TB
+    A[Bootstrap] --> B[Load Layout]
+    B --> C[Lazy Load Remote]
+    C --> D[Shared State Init]
+    D --> E[Render UI]
+```
 
-2. **Start development server**
-   ```bash
-   pnpm dev
-   ```
-   
-   The host application will be available at `http://localhost:5173`
+## 📂 Structure
 
-3. **Build for production**
-   ```bash
-   pnpm build
-   ```
+```
+host/
+├── src/
+│   ├── components/
+│   │   ├── organisms/     # Header, Sidebar
+│   │   └── templates/     # DashboardLayout
+│   └── App.tsx            # Shell app
+└── vite.config.ts         # Module Federation remotes
+```
 
-4. **Preview production build**
-   ```bash
-   pnpm preview
-   ```
+## 🚀 Loading
 
-## Module Federation Configuration
+```typescript
+// Remote configuration
+remotes: {
+  'vite_remote': {
+    entry: 'http://localhost:5174/remoteEntry.js',
+  },
+  'shared-state': {
+    entry: 'http://localhost:5175/remoteEntry.js',
+  },
+}
+```
 
-This host application is configured to consume remote micro-frontends:
+## 🔗 Dependencies
 
-- **Vite Remote**: Components from Vite-built remote application
-- **Rspack Remote**: Components from Rspack-built remote application  
-- **Webpack Remote**: Components from Webpack-built remote application
+- **Remote App**: Content and global components
+- **Shared State**: Global state (theme, language)
+- **Zephyr Cloud**: Automatic deployment and resolution
 
-The host demonstrates how different bundlers can work together seamlessly in a Module Federation architecture.
+## 📱 Responsive
 
-## Development Workflow
-
-For local development with all remotes:
-
-1. Start this host application: `pnpm dev` (port 5173)
-2. Start remote applications in parallel:
-   - Vite remote: port 5174
-   - Rspack remote: port 8080
-   - Webpack remote: port 3000
-
-## Zephyr Cloud Integration
-
-This host application integrates with Zephyr Cloud for:
-
-- **Remote Discovery**: Automatically finds and loads deployed remotes
-- **Version Management**: Uses SemVer for remote versioning
-- **Runtime Loading**: Loads remote applications at runtime
-- **Deployment**: Automatic deployment when built
-
-## About Module Federation
-
-Module Federation enables this host to:
-- **Runtime Composition**: Load remote components at runtime
-- **Independent Deployment**: Remotes can deploy without host changes
-- **Technology Diversity**: Consume remotes built with different bundlers
-- **Shared Dependencies**: Share React and other libraries efficiently
-
-## About Zephyr Cloud
-
-Zephyr Cloud is a micro-frontend deployment platform that provides:
-- **Auto-deployment**: Seamless deployment from your build process
-- **Live preview links**: Instant preview URLs for your applications
-- **SemVer versioning**: Semantic versioning for your frontend modules
-- **Rollback capabilities**: Easy rollback to previous versions
-- **Enterprise-scale orchestration**: Built for composable frontend systems
-
-## Learn More
-
-- [Vite Documentation](https://vitejs.dev/)
-- [Module Federation Documentation](https://module-federation.io/)
-- [Zephyr Cloud Documentation](https://docs.zephyr-cloud.io)
+- Desktop (≥769px): Sidebar always visible
+- Mobile (<769px): Collapsible sidebar
+- Suspense boundaries for loading states

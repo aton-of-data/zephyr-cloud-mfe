@@ -1,23 +1,63 @@
-import Button from './Button';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
-import './App.css';
+/**
+ * Remote App Content
+ * 
+ * Main content component loaded into the host dashboard via Module Federation.
+ * Displays dashboard content with cards showing different features and controls.
+ * 
+ * @component
+ * @example
+ * ```tsx
+ * <App />
+ * ```
+ */
+// @ts-expect-error - Remote module
+import { useLanguageStore, selectT } from 'shared-state/stores';
+import { ThemeButton, LanguageButton } from "./components";
+import "./App.css";
 
 function App() {
+  const t = useLanguageStore(selectT);
+
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="remote-app">
+      <div className="remote-app-header">
+        <h2>{t('dashboardTitle')}</h2>
+        <p>{t('dashboardDesc')}</p>
       </div>
-      <h1>Vite + React</h1>
-      <Button />
-      <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
-    </>
+
+      <div className="remote-app-grid">
+        <div className="remote-app-card">
+          <h3>{t('workspaceTitle')}</h3>
+          <p>{t('workspaceDesc')}</p>
+        </div>
+
+        <div className="remote-app-card">
+          <h3>{t('analyticsTitle')}</h3>
+          <p>{t('analyticsDesc')}</p>
+        </div>
+
+        <div className="remote-app-card">
+          <h3>{t('teamTitle')}</h3>
+          <p>{t('teamDesc')}</p>
+        </div>
+
+        <div className="remote-app-card">
+          <h3>{t('themeTitle')}</h3>
+          <p>{t('themeDesc')}</p>
+          <div style={{ marginTop: "1rem" }}>
+            <ThemeButton />
+          </div>
+        </div>
+
+        <div className="remote-app-card">
+          <h3>{t('languageTitle')}</h3>
+          <p>{t('languageDesc')}</p>
+          <div style={{ marginTop: "1rem" }}>
+            <LanguageButton />
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
