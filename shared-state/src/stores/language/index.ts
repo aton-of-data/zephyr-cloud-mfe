@@ -1,8 +1,18 @@
 /**
  * Language Store Module
- * 
+ *
  * Barrel export for language store, types, and selectors.
- * 
+ * Provides complete language management functionality for all micro frontends.
+ *
+ * ```mermaid
+ * graph LR
+ *   A[language module] --> B[useLanguageStore]
+ *   A --> C[Language Types]
+ *   A --> D[Language Selectors]
+ *   D --> E[selectT]
+ *   D --> F[selectLanguage]
+ * ```
+ *
  * @module language
  * @category Shared State
  */

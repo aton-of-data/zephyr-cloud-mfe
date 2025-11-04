@@ -1,27 +1,18 @@
-/**
- * Language Store
- * 
- * Flux-inspired state management for language preferences using Zustand.
- * Implements unidirectional flow: Action → Store → View with selectors for immutable reads.
- * 
- * @module language/store
- * @category Shared State
- */
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 /**
  * Supported languages in the application
- * 
+ *
  * @typedef {("pt" | "en")} Language
  */
 export type Language = "pt" | "en";
 
 /**
  * Language Store Interface
- * 
+ *
  * Manages language state and provides actions to update it.
- * 
+ *
  * @interface LanguageStore
  */
 export interface LanguageStore {
@@ -38,16 +29,31 @@ export interface LanguageStore {
 }
 
 /**
- * Language Store Hook
- * 
- * Zustand store for managing language state with persistence.
+ * Language Store
+ *
+ * Flux-inspired state management for language preferences using Zustand.
+ * Implements unidirectional flow: Action → Store → View with selectors for immutable reads.
+ *
+ * ```mermaid
+ * graph LR
+ *   A[Action: setLanguage] --> B[Store updates]
+ *   C[Action: toggleLanguage] --> B
+ *   B --> D[Persist to localStorage]
+ *   B --> E[Selectors read state]
+ *   E --> F[Components re-render]
+ *   G[Component] --> H[Selector]
+ *   H --> I[Store state]
+ * ```
+ *
+ * @module language/store
+ * @category Shared State
  */
 export const useLanguageStore = create<LanguageStore>()(
   persist(
     (set, get) => {
       /**
        * Gets the initial state from localStorage or defaults
-       * 
+       *
        * @returns {Partial<LanguageStore>} The initial language state
        */
       const getInitialState = (): Partial<LanguageStore> => {

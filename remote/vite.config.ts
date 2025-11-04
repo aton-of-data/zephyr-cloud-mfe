@@ -6,8 +6,8 @@ const mfConfig: ModuleFederationOptions = {
   name: 'vite_remote',
   filename: 'remoteEntry.js',
   exposes: {
-    './ThemeButton': './src/components/ThemeButton',
-    './LanguageButton': './src/components/LanguageButton',
+    './ThemeButton': './src/components/atoms/ThemeButton',
+    './LanguageButton': './src/components/atoms/LanguageButton',
     './App': './src/App',
   },
   remotes: {

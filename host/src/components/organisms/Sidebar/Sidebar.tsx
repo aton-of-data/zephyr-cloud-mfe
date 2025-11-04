@@ -1,9 +1,22 @@
+// @ts-expect-error - Remote module
+import ThemeButton from "vite_remote/ThemeButton";
+// @ts-expect-error - Remote module
+import LanguageButton from "vite_remote/LanguageButton";
+// @ts-expect-error - Remote module
+import { useLanguageStore, selectT } from "shared-state/stores";
+import "./Sidebar.css";
+
+interface SidebarProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
 /**
  * Sidebar Component
- * 
+ *
  * Displays the navigation sidebar with menu items and theme/language controls.
  * Includes an overlay for mobile devices when the sidebar is open.
- * 
+ *
  * @component
  * @param {Object} props - Component props
  * @param {boolean} props.isOpen - Whether the sidebar is currently open
@@ -14,33 +27,20 @@
  * <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
  * ```
  */
-// @ts-expect-error - Remote module
-import ThemeButton from 'vite_remote/ThemeButton';
-// @ts-expect-error - Remote module
-import LanguageButton from 'vite_remote/LanguageButton';
-// @ts-expect-error - Remote module
-import { useLanguageStore, selectT } from 'shared-state/stores';
-import './Sidebar.css';
-
-interface SidebarProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
-
 const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
   const t = useLanguageStore(selectT);
 
   return (
     <>
       {isOpen && <div className="sidebar-overlay" onClick={onClose} />}
-      
-      <aside className={`sidebar ${isOpen ? 'sidebar-open' : ''}`}>
+
+      <aside className={`sidebar ${isOpen ? "sidebar-open" : ""}`}>
         <div className="sidebar-header">
-          <h2 className="sidebar-logo">🚀 {t('dashboard')}</h2>
-          <button 
+          <h2 className="sidebar-logo">🚀 {t("dashboard")}</h2>
+          <button
             className="sidebar-close"
             onClick={onClose}
-            aria-label={t('closeSidebar')}
+            aria-label={t("closeSidebar")}
           >
             ✕
           </button>
@@ -49,19 +49,19 @@ const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
         <nav className="sidebar-nav">
           <a href="#" className="sidebar-nav-item active">
             <span className="sidebar-nav-icon">📊</span>
-            <span>{t('dashboard')}</span>
+            <span>{t("dashboard")}</span>
           </a>
           <a href="#" className="sidebar-nav-item">
             <span className="sidebar-nav-icon">📈</span>
-            <span>{t('analytics')}</span>
+            <span>{t("analytics")}</span>
           </a>
           <a href="#" className="sidebar-nav-item">
             <span className="sidebar-nav-icon">📝</span>
-            <span>{t('reports')}</span>
+            <span>{t("reports")}</span>
           </a>
           <a href="#" className="sidebar-nav-item">
             <span className="sidebar-nav-icon">⚙️</span>
-            <span>{t('settings')}</span>
+            <span>{t("settings")}</span>
           </a>
         </nav>
 
@@ -77,4 +77,3 @@ const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
 };
 
 export default Sidebar;
-

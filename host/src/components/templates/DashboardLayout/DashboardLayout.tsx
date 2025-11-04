@@ -1,16 +1,3 @@
-/**
- * Dashboard Layout - Main Shell Container
- * 
- * Orchestrates the main application layout with header, sidebar, and remote content.
- * Manages responsive sidebar state and lazy loads remote application content via Module Federation.
- * 
- * @component
- * @category Host
- * @example
- * ```tsx
- * <DashboardLayout />
- * ```
- */
 import { useState, useEffect } from "react";
 import { lazy, Suspense } from "react";
 // @ts-expect-error - Remote module
@@ -21,6 +8,30 @@ import "./DashboardLayout.css";
 // @ts-expect-error - Remote module
 const RemoteApp = lazy(() => import("vite_remote/App"));
 
+/**
+ * Dashboard Layout - Main Shell Container
+ *
+ * Orchestrates the main application layout with header, sidebar, and remote content.
+ * Manages responsive sidebar state and lazy loads remote application content via Module Federation.
+ *
+ * ```mermaid
+ * graph TD
+ *   A[DashboardLayout] --> B[Header Component]
+ *   A --> C[Sidebar Component]
+ *   A --> D[Suspense Boundary]
+ *   D --> E[Lazy RemoteApp]
+ *   F[Window Resize] --> G[Update Sidebar State]
+ *   H[Screen Width >= 769px] --> I[Auto-open Sidebar]
+ *   J[Module Federation] --> E
+ * ```
+ *
+ * @component
+ * @category Host
+ * @example
+ * ```tsx
+ * <DashboardLayout />
+ * ```
+ */
 const DashboardLayout = () => {
   const t = useLanguageStore(selectT);
 

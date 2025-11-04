@@ -1,9 +1,18 @@
 /**
  * Translations
- * 
+ *
  * Centralized translations for the entire application.
  * Contains all translatable strings in Portuguese and English.
- * 
+ *
+ * ```mermaid
+ * graph LR
+ *   A[translations object] --> B[Portuguese translations]
+ *   A --> C[English translations]
+ *   D[Language Store] --> E[Select translation set]
+ *   E --> F[Translation function]
+ *   F --> G[Component displays text]
+ * ```
+ *
  * @module i18n/translations
  * @category Shared State
  */

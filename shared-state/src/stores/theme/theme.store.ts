@@ -1,34 +1,25 @@
-/**
- * Theme Store
- * 
- * Flux-inspired state management for theme preferences using Zustand.
- * Implements unidirectional flow: Action → Store → View with selectors for immutable reads.
- * 
- * @module theme/store
- * @category Shared State
- */
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 /**
  * Theme options available in the application
- * 
+ *
  * @typedef {("light" | "dark" | "system")} Theme
  */
 export type Theme = "light" | "dark" | "system";
 
 /**
  * Resolved theme after system detection
- * 
+ *
  * @typedef {("light" | "dark")} ResolvedTheme
  */
 export type ResolvedTheme = "light" | "dark";
 
 /**
  * Theme Store Interface
- * 
+ *
  * Manages theme state and provides actions to update it.
- * 
+ *
  * @interface ThemeStore
  */
 export interface ThemeStore {
@@ -48,7 +39,7 @@ export interface ThemeStore {
 
 /**
  * Gets the system theme preference
- * 
+ *
  * @returns {ResolvedTheme} The system theme preference
  */
 const getSystemTheme = (): ResolvedTheme => {
@@ -60,7 +51,7 @@ const getSystemTheme = (): ResolvedTheme => {
 
 /**
  * Resolves a theme to its actual value
- * 
+ *
  * @param {Theme} theme - The theme to resolve
  * @returns {ResolvedTheme} The resolved theme
  */
@@ -70,7 +61,7 @@ const resolveTheme = (theme: Theme): ResolvedTheme => {
 
 /**
  * Applies the theme to the document root
- * 
+ *
  * @param {ResolvedTheme} theme - The theme to apply
  */
 const applyTheme = (theme: ResolvedTheme): void => {
@@ -82,16 +73,32 @@ const applyTheme = (theme: ResolvedTheme): void => {
 };
 
 /**
- * Theme Store Hook
- * 
- * Zustand store for managing theme state with persistence.
+ * Theme Store
+ *
+ * Flux-inspired state management for theme preferences using Zustand.
+ * Implements unidirectional flow: Action → Store → View with selectors for immutable reads.
+ *
+ * ```mermaid
+ * graph LR
+ *   A[Action: setTheme] --> B[Store updates]
+ *   C[Action: toggleTheme] --> B
+ *   B --> D[Resolve theme]
+ *   D --> E[Apply to DOM]
+ *   B --> F[Persist to localStorage]
+ *   B --> G[Selectors read state]
+ *   G --> H[Components re-render]
+ *   I[System Preference] --> D
+ * ```
+ *
+ * @module theme/store
+ * @category Shared State
  */
 export const useThemeStore = create<ThemeStore>()(
   persist(
     (set, get) => {
       /**
        * Gets the initial state from localStorage or defaults
-       * 
+       *
        * @returns {Partial<ThemeStore>} The initial theme state
        */
       const getInitialState = (): Partial<ThemeStore> => {

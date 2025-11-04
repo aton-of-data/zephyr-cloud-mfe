@@ -1,17 +1,3 @@
-/**
- * Header Component
- * 
- * Displays the main header of the dashboard with a menu toggle button and title.
- * 
- * @component
- * @param {Object} props - Component props
- * @param {Function} props.onMenuClick - Callback function triggered when menu button is clicked
- * @category Host
- * @example
- * ```tsx
- * <Header onMenuClick={() => setSidebarOpen(!sidebarOpen)} />
- * ```
- */
 // @ts-expect-error - Remote module
 import { useLanguageStore, selectT } from 'shared-state/stores';
 import './Header.css';
@@ -20,6 +6,29 @@ interface HeaderProps {
   onMenuClick: () => void;
 }
 
+/**
+ * Header Component
+ *
+ * Displays the main header of the dashboard with a menu toggle button and title.
+ * Uses shared state for translations and provides accessibility labels.
+ *
+ * ```mermaid
+ * graph LR
+ *   A[User clicks menu] --> B[onMenuClick callback]
+ *   B --> C[Sidebar toggles]
+ *   D[Language Store] --> E[Translation function]
+ *   E --> F[Header renders with translated text]
+ * ```
+ *
+ * @component
+ * @param {HeaderProps} props - Component props
+ * @param {Function} props.onMenuClick - Callback function triggered when menu button is clicked
+ * @category Host
+ * @example
+ * ```tsx
+ * <Header onMenuClick={() => setSidebarOpen(!sidebarOpen)} />
+ * ```
+ */
 const Header = ({ onMenuClick }: HeaderProps) => {
   const t = useLanguageStore(selectT);
 

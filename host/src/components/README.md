@@ -1,62 +1,81 @@
-# Componentes - Atomic Design Pattern
+# Components - Atomic Design Pattern
 
-Esta pasta está organizada seguindo o padrão **Atomic Design**, que divide os componentes em diferentes níveis de complexidade.
+This folder is organized following the **Atomic Design** pattern, which divides components into different levels of complexity.
 
-## 📁 Estrutura
+## 📁 Structure
 
 ```
 components/
-├── atoms/           # Componentes básicos e indivisíveis
+├── atoms/           # Basic and indivisible components
 │   └── Button/
-├── molecules/       # Combinações simples de atoms
-│   └── (vazio - usando ThemeButton do remote)
-├── organisms/       # Componentes complexos formados por molecules/atoms
+├── molecules/       # Simple combinations of atoms
+│   └── (empty - using ThemeButton from remote)
+├── organisms/       # Complex components formed by molecules/atoms
 │   ├── Header/
 │   └── Sidebar/
-├── templates/       # Layouts que combinam organisms
+├── templates/       # Layouts that combine organisms
 │   └── DashboardLayout/
 └── index.ts         # Barrel exports
 ```
 
-## 🎯 Níveis do Atomic Design
+## 🎯 Atomic Design Levels
 
 ### Atoms (`atoms/`)
-Componentes básicos, menores e indivisíveis. Eles não fazem sentido sozinhos fora de um contexto.
+Basic, smallest and indivisible components. They don't make sense alone outside of a context.
 
-**Exemplos:**
-- `Button` - Botão básico reutilizável
+**Examples:**
+- `Button` - Basic reusable button
 
 ### Molecules (`molecules/`)
-Combinações simples de atoms. Começam a ter funcionalidade e propósito específico.
+Simple combinations of atoms. They begin to have specific functionality and purpose.
 
-**Nota:** O `ThemeButton` está sendo usado do **remote** (`vite_remote/ThemeButton`), por isso não está nesta pasta.
+**Note:** Currently empty. Add atom combinations here when needed.
+
+**Remote Components:** `ThemeButton` and `LanguageButton` are atoms from the **remote** (`vite_remote/ThemeButton`, `vite_remote/LanguageButton`), which is also organized using Atomic Design. See [remote/src/components/README.md](../../../remote/src/components/README.md) for details.
 
 ### Organisms (`organisms/`)
-Componentes complexos que combinam molecules e atoms para formar seções funcionais da interface.
+Complex components that combine molecules and atoms to form functional sections of the interface.
 
-**Exemplos:**
-- `Header` - Cabeçalho do dashboard
-- `Sidebar` - Barra lateral de navegação
+**Examples:**
+- `Header` - Dashboard header
+- `Sidebar` - Navigation sidebar
 
 ### Templates (`templates/`)
-Layouts que combinam organisms para formar páginas completas.
+Layouts that combine organisms to form complete pages.
 
-**Exemplos:**
-- `DashboardLayout` - Layout principal do dashboard
+**Examples:**
+- `DashboardLayout` - Main dashboard layout
 
-## 🔄 Uso do ThemeButton do Remote
+## 🔄 Using Remote Components
 
-O `ThemeButton` está sendo importado do remote MFE:
+The atom components (`ThemeButton` and `LanguageButton`) are being imported from the remote MFE:
 
 ```tsx
 import ThemeButton from 'vite_remote/ThemeButton';
+import LanguageButton from 'vite_remote/LanguageButton';
 ```
 
-Isso permite reutilizar o componente que está gerenciado no remote, mantendo a consistência entre aplicações.
+This allows reusing components that are managed in the remote, maintaining consistency between applications. The remote is also organized using **Atomic Design**, where these components are basic atoms.
+
+### Remote Structure
+
+The remote follows the same Atomic Design organization:
+
+```
+remote/src/components/
+├── atoms/
+│   ├── ThemeButton/      # Used in host Sidebar
+│   └── LanguageButton/   # Used in host Sidebar
+├── molecules/
+├── organisms/
+└── templates/
+```
+
+For more details, see [remote/src/components/README.md](../../../remote/src/components/README.md).
 
 ## 📦 Exports
 
-Todos os componentes são exportados através do arquivo `index.ts` principal:
+All components are exported through the main `index.ts` file:
 
 ```tsx
 import { Button } from './components'; // Atom
@@ -64,9 +83,9 @@ import { Header, Sidebar } from './components'; // Organisms
 import { DashboardLayout } from './components'; // Template
 ```
 
-## 🎨 Estilos
+## 🎨 Styles
 
-Cada componente possui seu próprio arquivo CSS dentro de sua pasta:
+Each component has its own CSS file within its folder:
 
 ```
 Button/
@@ -75,5 +94,4 @@ Button/
 └── index.ts
 ```
 
-Isso mantém os estilos encapsulados e facilita a manutenção.
-
+This keeps styles encapsulated and makes maintenance easier.

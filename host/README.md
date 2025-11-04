@@ -37,12 +37,27 @@ flowchart TB
 ```
 host/
 ├── src/
-│   ├── components/
+│   ├── components/        # Atomic Design structure
+│   │   ├── atoms/         # Basic components
+│   │   ├── molecules/     # Atom combinations
 │   │   ├── organisms/     # Header, Sidebar
-│   │   └── templates/     # DashboardLayout
+│   │   ├── templates/     # DashboardLayout
+│   │   └── index.ts       # Barrel exports
 │   └── App.tsx            # Shell app
 └── vite.config.ts         # Module Federation remotes
 ```
+
+### 🎯 Atomic Design Organization
+
+Components follow the **Atomic Design** pattern:
+- **Atoms**: Basic, indivisible components (currently minimal - using remote atoms)
+- **Molecules**: Simple combinations of atoms (currently empty)
+- **Organisms**: Complex components (`Header`, `Sidebar`)
+- **Templates**: Layout structures (`DashboardLayout`)
+
+The host also consumes atoms from the Remote application (`ThemeButton`, `LanguageButton`) which are also organized using Atomic Design.
+
+See [components/README.md](./src/components/README.md) for detailed documentation.
 
 ## 🚀 Loading
 

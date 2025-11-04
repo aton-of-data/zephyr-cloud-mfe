@@ -1,20 +1,33 @@
+// @ts-expect-error - Remote module
+import { useLanguageStore, selectT } from 'shared-state/stores';
+import { ThemeButton, LanguageButton } from './components';
+import './App.css';
+
 /**
  * Remote App Content
- * 
+ *
  * Main content component loaded into the host dashboard via Module Federation.
  * Displays dashboard content with cards showing different features and controls.
- * 
+ *
+ * ```mermaid
+ * graph TD
+ *   A[Host App] --> B[Lazy Load RemoteApp]
+ *   B --> C[Module Federation]
+ *   C --> D[Remote App Renders]
+ *   D --> E[Dashboard Cards]
+ *   D --> F[ThemeButton]
+ *   D --> G[LanguageButton]
+ *   H[Language Store] --> I[Translations]
+ *   I --> D
+ * ```
+ *
  * @component
+ * @category Remote
  * @example
  * ```tsx
  * <App />
  * ```
  */
-// @ts-expect-error - Remote module
-import { useLanguageStore, selectT } from 'shared-state/stores';
-import { ThemeButton, LanguageButton } from "./components";
-import "./App.css";
-
 function App() {
   const t = useLanguageStore(selectT);
 

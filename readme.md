@@ -134,9 +134,12 @@ mfe/
 ├── remote/            # Remote Application (library)
 │   ├── src/
 │   │   ├── App.tsx    # Main content
-│   │   └── components/
-│   │       ├── ThemeButton
-│   │       └── LanguageButton
+│   │   └── components/  # Atomic Design structure
+│   │       ├── atoms/   # ThemeButton, LanguageButton
+│   │       ├── molecules/
+│   │       ├── organisms/
+│   │       ├── templates/
+│   │       └── index.ts
 │   └── vite.config.ts # Module Federation exposes
 │
 ├── shared-state/      # Shared State (global)
@@ -262,11 +265,13 @@ const RemoteApp = lazy(() => import("vite_remote/App"));
 ```typescript
 // remote/vite.config.ts
 exposes: {
-  './ThemeButton': './src/components/ThemeButton',
-  './LanguageButton': './src/components/LanguageButton',
+  './ThemeButton': './src/components/atoms/ThemeButton',
+  './LanguageButton': './src/components/atoms/LanguageButton',
   './App': './src/App',
 }
 ```
+
+**Note:** Components are organized using **Atomic Design** pattern. Atoms are exposed individually for granular consumption.
 
 ### Host Configuration
 
@@ -362,7 +367,7 @@ shared: {
 4. **Independent Development**: Teams can work separately
 5. **Independent Deployment**: Updates without full application redeploy
 6. **Global State Management**: Shared state across multiple applications
-7. **Atomic Design**: Component organization patterns
+7. **Atomic Design**: Component organization patterns in both Host and Remote applications
 
 ## 📝 License
 
